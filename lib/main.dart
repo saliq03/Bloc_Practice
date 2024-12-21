@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/bloc/counter/counter_bloc.dart';
+import 'package:untitled/bloc/switch_bloc/switch_bloc.dart';
 import 'package:untitled/ui/counter_screen.dart';
 
 void main() {
@@ -14,8 +15,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_)=> CounterBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_)=> SwitchBloc()),
+        BlocProvider(create: (_)=> CounterBloc()),
+      ],
       child: MaterialApp(
         title: 'Bloc Practice',
         debugShowCheckedModeBanner: false,

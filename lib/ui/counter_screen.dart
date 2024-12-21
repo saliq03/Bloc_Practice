@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/bloc/counter/counter_bloc.dart';
 import 'package:untitled/bloc/counter/counter_event.dart';
 import 'package:untitled/bloc/counter/counter_state.dart';
+import 'package:untitled/ui/switch.dart';
 
 import '../equitable_package.dart';
 
@@ -46,11 +47,7 @@ class _CounterScreenState extends State<CounterScreen> {
       ),
       
       floatingActionButton: FloatingActionButton(onPressed: (){
-        Ttry obj=Ttry(name: "saliq", age: 20);
-        Ttry obj2=Ttry(name: "saliq", age: 20);
-        print(obj.hashCode);
-        print(obj2.hashCode);
-        print(obj==obj2);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>SwitchScreen() ));
 
       }),
     );
