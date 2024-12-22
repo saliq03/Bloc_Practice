@@ -2,8 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/bloc/counter/counter_bloc.dart';
+import 'package:untitled/bloc/favourites/favourites_bloc.dart';
 import 'package:untitled/bloc/image_picker_bloc/image_picker_bloc.dart';
 import 'package:untitled/bloc/switch_bloc/switch_bloc.dart';
+import 'package:untitled/repository/favourite_repository.dart';
 import 'package:untitled/ui/counter_screen.dart';
 
 void main() {
@@ -20,7 +22,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_)=> SwitchBloc()),
         BlocProvider(create: (_)=> CounterBloc()),
-        BlocProvider(create: (_)=> ImagePickerBloc())
+        BlocProvider(create: (_)=> ImagePickerBloc()),
+        BlocProvider(create: (_)=> FavouritesBloc(FavouriteRepository()))
       ],
       child: MaterialApp(
         title: 'Bloc Practice',

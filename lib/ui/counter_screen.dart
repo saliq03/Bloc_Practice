@@ -4,11 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/bloc/counter/counter_bloc.dart';
 import 'package:untitled/bloc/counter/counter_event.dart';
 import 'package:untitled/bloc/counter/counter_state.dart';
-import 'package:untitled/ui/image_picker_screen.dart';
-import 'package:untitled/ui/switch.dart';
-
-
-
+import 'package:untitled/ui/favourites_screen.dart';
 class CounterScreen extends StatefulWidget {
   const CounterScreen({super.key});
 
@@ -17,6 +13,8 @@ class CounterScreen extends StatefulWidget {
 }
 
 class _CounterScreenState extends State<CounterScreen> {
+
+
   @override
   Widget build(BuildContext context) {
     print("whole widget building");
@@ -48,7 +46,7 @@ class _CounterScreenState extends State<CounterScreen> {
       ),
       
       floatingActionButton: FloatingActionButton(onPressed: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>ImagePickerScreen() ));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> FavouritesScreen() ));
 
       }),
     );
