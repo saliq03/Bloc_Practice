@@ -4,9 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/bloc/counter/counter_bloc.dart';
 import 'package:untitled/bloc/counter/counter_event.dart';
 import 'package:untitled/bloc/counter/counter_state.dart';
+import 'package:untitled/ui/image_picker_screen.dart';
 import 'package:untitled/ui/switch.dart';
 
-import '../equitable_package.dart';
+
 
 class CounterScreen extends StatefulWidget {
   const CounterScreen({super.key});
@@ -47,7 +48,7 @@ class _CounterScreenState extends State<CounterScreen> {
       ),
       
       floatingActionButton: FloatingActionButton(onPressed: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>SwitchScreen() ));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>ImagePickerScreen() ));
 
       }),
     );
