@@ -22,9 +22,24 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          BlocBuilder<FavouritesBloc, FavouritesState>(
+            buildWhen: (previous,current)=>previous.tempItemList.length!=current.tempItemList.length&&current.tempItemList.length<2,
+  builder: (context, state) {
+            print("delete icon build");
+    return Visibility(
+            visible: state.tempItemList.isNotEmpty,
+              child: IconButton(onPressed: (){
+                context.read<FavouritesBloc>().add(DeleteItems());
+              }, icon: const Icon(Icons.delete_forever,color: Colors.redAccent,size: 30,)));
+  },
+)
+        ],
+      ),
       body: BlocBuilder<FavouritesBloc,FavouritesState>
         (builder: (context,state){
+          print('rebuild');
         if(state.listStatus==ListStatus.loading){
           return const  Center(child: CircularProgressIndicator());
         }else if(state.listStatus==ListStatus.sucess){
@@ -36,10 +51,15 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                   FavouriteItemModel item=state.favourites[index];
                  return Card(
                    child: ListTile(
-                     leading: Checkbox(value: true, onChanged: (value){
+                     leading: Checkbox(value:state.tempItemList.contains(item), onChanged: (_){
+                       context.read<FavouritesBloc>().add(SelectAndUnselectItem(item: item));
                      }),
                      title: Text(item.value),
-                     trailing: item.isFavourite? const Icon(Icons.favorite,color: Colors.red,):const Icon(Icons.favorite_border),
+                     subtitle: Text(item.isFavourite.toString()),
+                     trailing: InkWell(onTap: (){
+                       context.read<FavouritesBloc>().add(AddOrRemoveFromFavourites(itemModel: item));
+                     },
+                         child: item.isFavourite? const Icon(Icons.favorite,color: Colors.red,):const Icon(Icons.favorite_border)),
                    ),
                  );
                 }),
